@@ -47,7 +47,7 @@ class DifyClient:
 
     def check_connection(self) -> bool:
         try:
-            response = self.client.get(self._full_url("/workspaces"))
+            response = self.client.get(self._full_url("/workspaces"), timeout=30)
             if response.status_code != status.HTTP_200_OK:
                 raise DifyException(
                     ErrorCode.DIFY_CLIENT_ERROR, response.json()["message"]
